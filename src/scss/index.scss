@@ -1,0 +1,16 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+button, input {
+    height: 30px;
+}
+
+#scoreButton {
+    margin: 50px 0 0 0;
+}
