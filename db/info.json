@@ -9,8 +9,32 @@
     {
       "email": "asd1@gmail.com",
       "password": "1",
-      "score": 21,
+      "score": 22,
       "id": 2
+    },
+    {
+      "email": "123@gmail.com",
+      "password": "1234",
+      "score": 0,
+      "id": 3
+    },
+    {
+      "email": "john@gmail.com",
+      "password": "1234",
+      "score": 24,
+      "id": 4
+    },
+    {
+      "email": "asd4@gmail.com",
+      "password": "1234",
+      "score": 0,
+      "id": 5
+    },
+    {
+      "email": "asd5@gmail.com",
+      "password": "1234",
+      "score": 9,
+      "id": 6
     }
   ]
 }

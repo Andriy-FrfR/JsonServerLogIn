@@ -8,44 +8,46 @@ const signUpButton = document.querySelector('.sign-up-button');
 let user;
 
 signUpButton.addEventListener('click', () => {
-  if (!localStorage.getItem('check')) return;
+  setTimeout(() => {
+    if (!localStorage.getItem('check')) return;
 
-  fetch(`http://localhost:3000/users/?email=${document.querySelector('.email-input').value}`)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    if (data.length !== 0) {
-      alert('Account with the email you typed already exists!')
-      return;
-    } else {
-      fetch('http://localhost:3000/users', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: document.querySelector('.email-input').value,
-            password: document.querySelector('.password-input').value,
-            score: 0
-          })
-      })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        user = data;
-        localStorage.setItem('user', JSON.stringify(user));
+    fetch(`http://localhost:3000/users/?email=${document.querySelector('.email-input').value}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.length !== 0) {
+        alert('Account with the email you typed already exists!')
+        return;
+      } else {
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: document.querySelector('.email-input').value,
+              password: document.querySelector('.password-input').value,
+              score: 0
+            })
+        })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          user = data;
+          localStorage.setItem('user', JSON.stringify(user));
 
-        window.location.href = 'clicker.html';
+          window.location.href = 'clicker.html';
 
-        score.innerHTML = 0;
-        console.log(data);
-      });
-    }
+          score.innerHTML = 0;
+          console.log(data);
+        });
+      }
 
-    console.log(data);
-  })
+      console.log(data);
+    })
+  }, 0);
 })
 
 logInButton.addEventListener('click', () => {
@@ -68,5 +70,5 @@ logInButton.addEventListener('click', () => {
       
       console.log(data);
     })
-    }, 0)
+  }, 0);
 })
