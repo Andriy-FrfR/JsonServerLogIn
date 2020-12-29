@@ -49,22 +49,24 @@ signUpButton.addEventListener('click', () => {
 })
 
 logInButton.addEventListener('click', () => {
-  if (!localStorage.getItem('check')) return;
+  setTimeout(() => {
+    if (!localStorage.getItem('check')) return;
 
-  fetch(`http://localhost:3000/users/?email=${document.querySelector('.email-input').value}&password=${document.querySelector('.password-input').value}`)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    if (data.length === 0) {
-      alert('Wrong email or password');
-    } else {
-      user = data[0];
-      localStorage.setItem('user', JSON.stringify(user));
+    fetch(`http://localhost:3000/users/?email=${document.querySelector('.email-input').value}&password=${document.querySelector('.password-input').value}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.length === 0) {
+        alert('Wrong email or password');
+      } else {
+        user = data[0];
+        localStorage.setItem('user', JSON.stringify(user));
 
-      window.location.href = 'clicker.html';
-    }
-    
-    console.log(data);
-  })
+        window.location.href = 'clicker.html';
+      }
+      
+      console.log(data);
+    })
+    }, 0)
 })
