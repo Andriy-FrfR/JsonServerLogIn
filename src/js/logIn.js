@@ -2,12 +2,14 @@
 
 // Requests
 
-const logInButton = document.getElementById('log-in-button');
+const logInButton = document.querySelector('.log-in-button');
+const signUpButton = document.querySelector('.sign-up-button');
+
 let user;
 
-const signUpButton = document.getElementById('sign-up-button');
-
 signUpButton.addEventListener('click', () => {
+  if (!localStorage.getItem('check')) return;
+
   fetch(`http://localhost:3000/users/?email=${document.querySelector('.email-input').value}`)
   .then((response) => {
     return response.json();
@@ -24,7 +26,8 @@ signUpButton.addEventListener('click', () => {
           },
           body: JSON.stringify({
             email: document.querySelector('.email-input').value,
-            password: document.querySelector('.password-input').value
+            password: document.querySelector('.password-input').value,
+            score: 0
           })
       })
       .then((response) => {
@@ -32,18 +35,22 @@ signUpButton.addEventListener('click', () => {
       })
       .then((data) => {
         user = data;
+        localStorage.setItem('user', JSON.stringify(user));
+
+        window.location.href = 'clicker.html';
+
         score.innerHTML = 0;
         console.log(data);
       });
     }
+
     console.log(data);
-  })
-  .catch(() => {
-    alert('Error');
   })
 })
 
 logInButton.addEventListener('click', () => {
+  if (!localStorage.getItem('check')) return;
+
   fetch(`http://localhost:3000/users/?email=${document.querySelector('.email-input').value}&password=${document.querySelector('.password-input').value}`)
   .then((response) => {
     return response.json();
@@ -53,44 +60,11 @@ logInButton.addEventListener('click', () => {
       alert('Wrong email or password');
     } else {
       user = data[0];
-      score.innerHTML = user.score || 0;
+      localStorage.setItem('user', JSON.stringify(user));
+
+      window.location.href = 'clicker.html';
     }
     
     console.log(data);
   })
-  .catch(() => {
-    alert('Error');
-  })
-})
-
-// Score
-
-const scoreButton = document.getElementById('score-button'),
-    score = document.getElementById('score');
-
-const scorePatch = () => {
-  if (!user) {
-    alert('Log in or Sign up, please!');
-    return;
-  }
-  fetch(`http://localhost:3000/users/${user.id}`, {
-      method: 'PATCH',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        score: +score.innerHTML
-      })
-  })
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  });
-}
-
-scoreButton.addEventListener('click', () => {
-  score.innerHTML = +score.innerHTML + 1;
-  scorePatch();
 })

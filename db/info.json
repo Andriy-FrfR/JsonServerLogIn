@@ -1,27 +1,16 @@
 {
   "users": [
     {
-      "email": "asd@gmail.com",
+      "email": "asd",
       "password": "1234",
-      "id": 1,
-      "score": 11
+      "score": 7,
+      "id": 1
     },
     {
-      "email": "asd",
-      "password": "123",
+      "email": "asd1@gmail.com",
+      "password": "1",
+      "score": 8,
       "id": 2
-    },
-    {
-      "email": "asd",
-      "password": "12354",
-      "id": 3,
-      "score": 3
-    },
-    {
-      "email": "as2d@gmail.com",
-      "password": "1234",
-      "id": 4,
-      "score": 4
     }
   ]
 }

@@ -1,0 +1,36 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*Clicker*/
+
+.clicker {
+    max-width: 500px;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.clicker-btn {
+    width: 300px;
+    height: 100px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background-color:#10c9c3;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/*Score*/
+
+.score {
+    font-size: 50px;
+    font-weight: bold;
+}
+
